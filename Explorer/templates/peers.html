@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% set active_page = 'peers' %}
+{% block title %}{% endblock %}
+{% block content %}
+
+<ul class="list-group list-group-flush mx-auto w-50">
+  {% for peer in peers %}
+  <li class="list-group-item">{{peer}}</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

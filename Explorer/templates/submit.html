@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% set active_page = 'blockchain' %}
+{% block title %}{% endblock %}
+{% block content %}
+
+<div class="w-75 mx-auto">
+  <form action="/submit" id="textform" method="post">
+    <div class="mb-3">
+      <label for="node" class="form-label">Node</label>
+      <input class="form-control" list="datalistOptions" id="node" name="node">
+      <datalist id="datalistOptions">
+        {% for peer in peers %}
+          <option value="{{ peer }}">
+        {% endfor %}
+      </datalist>
+    </div>
+    <div class="mb-3">
+      <label for="author" class="form-label">Author</label>
+      <input type="text" class="form-control" id="author" name="author">
+    </div>
+    <div class="mb-3">
+      <label for="content" class="form-label">Blog content</label>
+      <textarea class="form-control" id="content" name="content" rows="4"></textarea>
+    </div>
+    <button type="submit" class="btn btn-secondary float-end">Send</button>
+  </form>
+</div>
+
+{% endblock %}

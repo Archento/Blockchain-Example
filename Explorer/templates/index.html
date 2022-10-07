@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% set active_page = 'index' %}
+{% block title %}{% endblock %}
+{% block content %}
+
+<div class="card mb-5 mt-3 w-75 mx-auto">
+  <div class="card-body">
+    <div class="hstack gap-3">
+      <h5 class="card-title mt-2">Network Stats</h5>
+      <div class="ms-auto">
+        <p class="fw-bolder">Blocks</p>
+        <p class="font-monospace float-end">{{blocks_len}}</p>
+      </div>
+      <div class="vr"></div>
+      <div>
+        <p class="fw-bolder">Transactions</p>
+        <p class="font-monospace float-end">{{txn_len}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h4 class="text-secondary font-monospace border-bottom">Last 10 Blocks</h4>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Hash</th>
+      <th scope="col">Txn</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for blk in blocks %}
+    <tr>
+      <th scope="row">{{ blk.index }}</th>
+      <td><a class="text-reset text-decoration-none font-monospace" href="/block/{{blk.index}}">{{ blk.hash }}</a></td>
+      <td>{{ blk.transactions | length }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<br />
+
+<!-- <a role="button" class="btn btn-secondary" href="/" target="_blank">
+Resync from chain
+</a> -->
+
+
+<div style="margin: 20px">
+  {% for post in posts %}
+  <div class="post_box">
+    <div class="post_box-header">
+      <div class="post_box-options">
+        <button class="option-btn">Reply</button>
+      </div>
+      <div
+        style="
+          background: rgb(0, 97, 146) none repeat scroll 0% 0%;
+          box-shadow: rgb(0, 97, 146) 0px 0px 0px 2px;
+        "
+        class="post_box-avatar"
+      >
+        {{post.author[0]}}
+      </div>
+      <div class="name-header">{{post.author}}</div>
+      <div class="post_box-subtitle">
+        Posted at <i>{{readable_time(post.timestamp)}}</i>
+      </div>
+    </div>
+    <div>
+      <div class="post_box-body">
+        <p>{{post.content}}</p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

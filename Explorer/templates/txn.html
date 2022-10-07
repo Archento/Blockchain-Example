@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% set active_page = 'block' %}
+{% block title %}{% endblock %}
+{% block content %}
+
+<!-- {{ txn }} -->
+<h4>Transaction</h4>
+<hr>
+<dl class="row">
+  {% for key, value in txn|items %}
+    <dt class="col-sm-3">{{ key }}</dt>
+    <dd class="col-sm-9 font-monospace">{{ value }}</dd>
+  {% endfor %}
+</dl>
+
+{% endblock %}
